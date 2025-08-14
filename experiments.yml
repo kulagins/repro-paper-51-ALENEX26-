@@ -1,0 +1,175 @@
+instances:
+  - repo: local
+    items:
+      - name: atacseq_2223941232
+        files: [ ]
+        extra_args: [ 'atacseq.dot', '2223941232' ]
+      - name: atacseq_1000_2223941232
+        files: [ ]
+        extra_args: [ 'atacseq_1000.dot', '2223941232' ]
+      - name: atacseq_2000_2223941232
+        files: [ ]
+        extra_args: [ 'atacseq_2000.dot', '2223941232' ]
+      - name: atacseq_200_2223941232
+        files: [ ]
+        extra_args: [ 'atacseq_200.dot', '2223941232' ]
+      - name: atacseq_4000_2223941232
+        files: [ ]
+        extra_args: [ 'atacseq_4000.dot', '2223941232' ]
+      - name: atacseq_8000_2223941232
+        files: [ ]
+        extra_args: [ 'atacseq_8000.dot', '2223941232' ]
+      - name: atacseq_3908761308
+        files: [ ]
+        extra_args: [ 'atacseq.dot', '3908761308' ]
+      - name: atacseq_1000_3908761308
+        files: [ ]
+        extra_args: [ 'atacseq_1000.dot', '3908761308' ]
+
+      - name: atacseq_2000_3908761308
+        files: [ ]
+        extra_args: [ 'atacseq_2000.dot', '3908761308' ]
+      - name: atacseq_200_3908761308
+        files: [ ]
+        extra_args: [ 'atacseq_200.dot', '3908761308' ]
+
+
+instdir: 'input/generated'
+
+# memoryMultiplicator speedMultiplicator readWritePenalty offloadPenalty,
+variants:
+  #- axis: 'deviation'
+  #  items:
+  #    - name: '10perc'
+  #      extra_args: [ '1' ]
+  #    - name: '50perc'
+  #      extra_args: [ '2' ]
+  #    - name: 'nodev'
+  #      extra_args: [ '3' ]
+  - axis: 'penalties'
+    items:
+      #- name: '1'
+      #  extra_args: ['10000000', '10', '10', '0.1']
+      #- name: '2'
+      #  extra_args: ['100000000', '10', '10', '0.1' ]
+      #- name: '10^9-10-10-01'
+      #  extra_args: [ '1000000000', '10', '10', '0.1' ]
+      #- name: 'rw100'
+      #  extra_args: [ '100000000', '10', '10', '0.00001' ]
+      #- name: 'rw010'
+      #  extra_args: [ '100000000', '10', '1', '0.00001' ]
+      #- name: 'rw001'
+     #   extra_args: [ '100000000', '10', '0.1', '0.00001' ]
+      #- name: 'rw101'
+     #   extra_args: [ '100000000', '10', '0.01', '0.00001' ]
+     # - name: 'rw201'
+     #   extra_args: [ '100000000', '10', '0.001', '0.00001' ]
+     # - name: 'rw301'
+     #   extra_args: [ '100000000', '10', '0.0001', '0.00001' ]
+     # - name: 'pspw+4'
+     #   extra_args: [ '100000000', '10000', '1', '0.00001' ]
+     ## - name: 'pspw+3'
+     #   extra_args: [ '100000000', '1000', '1', '0.00001' ]
+     # - name: 'pspw+2'
+     #   extra_args: [ '100000000', '100', '1', '0.00001' ]
+     # - name: 'pspw+1'
+     #   extra_args: [ '100000000', '10', '1', '0.00001' ]
+     # - name: 'pspw-1'
+     #   extra_args: [ '100000000', '0.1', '1', '0.00001' ]
+     # - name: 'pspw-2'
+     #   extra_args: [ '100000000', '0.01', '1', '0.00001' ]
+     #- name: 'final'
+     #  extra_args: [ '100000000', '100', '1', '0.00001' ]
+     - name: 'fin10pw3'
+       extra_args: [ '100000000', '100', '1', '0.001' ]
+
+
+experiments:
+  - name: A1-dev
+    args: ['./build/fonda_scheduler', '@EXTRA_ARGS@', '1', 'no', './', 'machines.csv', '1', 'yes']
+    stdout: out
+    num_threads: 24
+    #slurm_args: ['--priority', '1'] #'--partition', 'core8a',
+  - name: A2-dev
+    args: ['./build/fonda_scheduler', '@EXTRA_ARGS@', '2', 'no' , './', 'machines.csv', '1', 'yes']
+    stdout: out
+    num_threads: 24
+    #slurm_args: ['--priority', '1'] #'--partition', 'core8a',
+  - name: A3-dev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@', '3', 'no', './', 'machines.csv', '1', 'yes']
+    stdout: out
+    num_threads: 24
+    #slurm_args: ['--priority', '1'] #'--partition', 'core8a',
+  - name: BASE-dev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@',  '1', 'yes', './', 'machines.csv', '1', 'yes']
+    stdout: out
+    num_threads: 24
+    #slurm_args: ['--priority', '1'] #'--partition', 'core8a',
+
+  - name: A1-30dev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@', '1', 'no', './', 'machines.csv', '5', 'yes' ]
+    stdout: out
+    num_threads: 24
+    #slurm_args: [ '--priority', '1' ] #'--partition', 'core8a',
+  - name: A2-30dev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@', '2', 'no' , './', 'machines.csv', '5', 'yes' ]
+    stdout: out
+    num_threads: 24
+    #slurm_args: [ '--priority', '1' ] #'--partition', 'core8a',
+  - name: A3-30dev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@', '3', 'no', './', 'machines.csv', '5', 'yes' ]
+    stdout: out
+    num_threads: 24
+    #slurm_args: [ '--priority', '1' ] #'--partition', 'core8a',
+  - name: BASE-30dev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@',  '1', 'yes', './', 'machines.csv', '5', 'yes' ]
+    stdout: out
+    num_threads: 24
+    #slurm_args: [ '--priority', '1' ] #'--partition', 'core8a',
+  - name: A1-bdev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@', '1', 'no', './', 'machines.csv', '2', 'yes' ]
+    stdout: out
+    num_threads: 24
+    #slurm_args: ['--priority', '1'] #'--partition', 'core8a',
+  - name: A2-bdev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@', '2', 'no' , './', 'machines.csv', '2', 'yes' ]
+    stdout: out
+    num_threads: 24
+  #  slurm_args: [ '--partition', 'core8a', 'priority', '1']
+  - name: A3-bdev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@', '3', 'no', './', 'machines.csv', '2', 'yes' ]
+    stdout: out
+    num_threads: 24
+    #slurm_args: ['--priority', '1'] #'--partition', 'core8a',
+  - name: BASE-bdev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@',  '1', 'yes', './', 'machines.csv', '2', 'yes' ]
+    stdout: out
+    num_threads: 24
+  - name: A1-ndev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@', '1', 'no', './', 'machines.csv', '3', 'yes' ]
+    stdout: out
+    num_threads: 24
+    #slurm_args: ['--priority', '1'] #'--partition', 'core8a',
+  - name: A2-ndev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@', '2', 'no' , './', 'machines.csv', '3','yes' ]
+    stdout: out
+    num_threads: 24
+    #slurm_args: ['--priority', '1'] #'--partition', 'core8a',
+  - name: A3-ndev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@', '3', 'no', './', 'machines.csv', '3', 'yes' ]
+    stdout: out
+    num_threads: 24
+    #slurm_args: ['--priority', '1'] #'--partition', 'core8a',
+  - name: BASE-ndev
+    args: [ './build/fonda_scheduler', '@EXTRA_ARGS@',  '1', 'yes', './', 'machines.csv', '3', 'yes' ]
+    stdout: out
+    num_threads: 24
+    #slurm_args: ['--priority', '1'] #'--partition', 'core8a',
+
+
+
+##
+matrix:
+  include:
+    - experiments: [ A1-ndev] #A1-dev, A2-dev, A3-dev, BASE-dev, A1-bdev, A2-bdev, A3-bdev, BASE-bdev, A1-30dev, A2-30dev, A3-30dev, BASE-30dev] #BASE-ndev, A1-ndev, A3-ndev ] #,
+      axes: [penalties]
