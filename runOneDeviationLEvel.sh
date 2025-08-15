@@ -38,4 +38,9 @@ echo "Calling jupyter - todo"
 
 # Optional: Return to starting directory
 cd "$START_DIR"
-echo "Returned to $START_DIR"
+echo "Running jupyter notebook"
+jupyter nbconvert \
+    --to notebook \
+    --execute "./AllScriptsPerPathToData.ipynb" \
+    --output "./AllScriptsPerPathToData.ipynb"
+
